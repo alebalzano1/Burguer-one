@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger One - Moreno</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container container-nav">
+            <div class="logo">
+                <img src="https://i.ibb.co/vzC7f0g/burger-one-logo.png" alt="Burger One Logo">
+                <span>Burger One</span>
+            </div>
+            <nav id="desktop-nav">
+                <a href="#hero">INICIO</a>
+                <a href="#menu">NUESTRO MENÚ</a>
+                <a href="admin.html" class="admin-link">ADMIN</a>
+            </nav>
+            <div class="cart-icon-container" onclick="toggleCart()">
+                <span class="cart-count">0</span>
+                🛒
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-container">
+            <div class="hero-text" data-aos="fade-right">
+                <span class="hero-tagline">LA EXPERIENCIA DEFINITIVA</span>
+                <h1>BURGER <span class="txt-yellow">ONE</span></h1>
+                <p class="hero-location">LA NÚMERO 1 EN MORENO</p>
+                <div class="hero-cta">
+                    <a href="#menu" class="btn btn-yellow">ORDENAR AHORA</a>
+                    <a href="https://wa.me/message/H6U5JCUY2WGXH1" class="btn btn-outline">CONOCENOS</a>
+                </div>
+            </div>
+            <div class="hero-image-wrap" data-aos="zoom-in">
+                <img src="img/hero.png" alt="Burguer Premium" class="floating-burger" loading="eager">
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>LAS <span class="txt-yellow">BURGERS</span></h2>
+                <p>Pan artesanal + Carne Premium. Todas nuestras burgers vienen con papas fritas.</p>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterMenu('burger')">BURGERS</button>
+                <button class="filter-btn" onclick="filterMenu('papas')">PAPAS</button>
+                <button class="filter-btn" onclick="filterMenu('bebida')">BEBIDAS</button>
+            </div>
+
+            <div id="product-grid" class="product-grid">
+                <!-- Se cargará desde app.js -->
+            </div>
+        </div>
+    </section>
+
+    <div class="caution-banner">
+        <div class="caution-text">
+            ⚠️ TODAS NUESTRAS BURGERS VIENEN CON PAPAS ⚠️ &nbsp;&nbsp;&nbsp;&nbsp; ⚠️ TODAS NUESTRAS BURGERS VIENEN CON
+            PAPAS ⚠️ &nbsp;&nbsp;&nbsp;&nbsp; ⚠️ TODAS NUESTRAS BURGERS VIENEN CON PAPAS ⚠️ &nbsp;&nbsp;&nbsp;&nbsp; ⚠️
+            TODAS NUESTRAS BURGERS VIENEN CON PAPAS ⚠️ &nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+
+    <!-- Carrito Lateral -->
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>MI PEDIDO</h3>
+            <button class="close-btn" onclick="toggleCart()">×</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Items del carrito -->
+        </div>
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>TOTAL:</span>
+                <span id="cart-total">$0</span>
+            </div>
+
+            <div class="delivery-selection">
+                <select id="order-type" onchange="toggleAddressField()">
+                    <option value="pickup">Retiro en Moreno (Blvd. Evita 2886)</option>
+                    <option value="delivery">Envío a Domicilio</option>
+                </select>
+                <input type="text" id="address-input" placeholder="Tu dirección exacta" style="display: none;">
+                <textarea id="notes-input"
+                    placeholder="Aclaraciones (Ej: Sin cebolla, pago con transferencia)"></textarea>
+            </div>
+
+            <button class="btn btn-whatsapp" onclick="checkout()">ENVIAR PEDIDO A WHATSAPP</button>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

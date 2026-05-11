@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Burger One</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para el dashboard que no están en la vista cliente */
+        .admin-body { padding: 40px 5%; background: #080808; }
+        .login-panel { 
+            position: fixed; top:0; left:0; width:100%; height:100%; 
+            background: #000; z-index:9999; display:flex; align-items:center; justify-content:center;
+        }
+        .login-box {
+            background:#111; padding:40px; border-radius:15px; border:1px solid var(--primary);
+            text-align:center; max-width:400px; width:90%;
+        }
+        .login-box h2 { font-family: 'Bebas Neue'; font-size: 3rem; color: var(--primary); margin-bottom:10px; }
+        .login-box input { 
+            width:100%; padding:12px; margin:10px 0; background:#000; border:1px solid #333; 
+            color:white; border-radius:5px;
+        }
+        .dashboard { display:none; max-width: 1000px; margin: 0 auto; }
+        .admin-card { 
+            background:#111; padding:25px; border-radius:12px; margin-bottom:25px; 
+            border-left: 5px solid var(--primary);
+        }
+        .admin-item-row { display:flex; gap:20px; align-items:flex-start; margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid #222; }
+        .admin-item-row img { width:80px; height:80px; border-radius:8px; object-fit:cover; }
+        .admin-item-info { flex:1; }
+        .admin-item-info input, .admin-item-info textarea, .admin-item-info select {
+            width:100%; padding:8px; margin-bottom:8px; background:#000; border:1px solid #333; color:white; border-radius:4px;
+        }
+        .admin-controls { display:flex; gap:10px; flex-wrap:wrap; }
+        .switch-group { display:flex; align-items:center; gap:10px; color:var(--text-muted); font-size:0.8rem; }
+    </style>
+</head>
+<body class="admin-body">
+
+    <div id="login-screen" class="login-panel">
+        <div class="login-box">
+            <h2>ACCESO ADMIN</h2>
+            <p style="color:#666; margin-bottom:20px;">Burger One Moreno</p>
+            <input type="text" id="user" placeholder="Usuario">
+            <input type="password" id="pass" placeholder="Contraseña">
+            <button class="btn btn-yellow" onclick="login()" style="width:100%; margin-top:10px;">INGRESAR</button>
+            <p id="error-msg" style="color:red; margin-top:15px; display:none;">Credenciales Inválidas</p>
+        </div>
+    </div>
+
+    <div id="dashboard" class="dashboard">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
+            <h1 style="font-family:'Bebas Neue'; font-size:3.5rem; color:var(--primary);">DASHBOARD CONTROL</h1>
+            <button class="btn btn-outline" onclick="logout()">CERRAR SESIÓN</button>
+        </div>
+
+        <div class="admin-card">
+            <h3 style="font-family:'Bebas Neue'; font-size:2rem; margin-bottom:20px;">AÑADIR PRODUCTO</h3>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                <input type="text" id="new-name" placeholder="Nombre (Ej: BIG ONE)" style="background:#000; border:1px solid #333; padding:10px; color:white;">
+                <input type="number" id="new-price" placeholder="Precio base ($)" style="background:#000; border:1px solid #333; padding:10px; color:white;">
+                <select id="new-type" style="background:#000; border:1px solid #333; padding:10px; color:white;">
+                    <option value="burger">Hamburguesa</option>
+                    <option value="papas">Papas</option>
+                    <option value="bebida">Bebida</option>
+                </select>
+                <input type="file" id="new-img" accept="image/*" style="padding:5px;">
+            </div>
+            <textarea id="new-desc" placeholder="Descripción de ingredientes..." style="width:100%; height:80px; background:#000; border:1px solid #333; margin-top:15px; padding:10px; color:white;"></textarea>
+            <button class="btn btn-yellow" style="margin-top:15px;" onclick="addNew()">+ GUARDAR NUEVO</button>
+        </div>
+
+        <div class="admin-card">
+            <h3 style="font-family:'Bebas Neue'; font-size:2rem; margin-bottom:20px;">GESTIONAR MENÚ</h3>
+            <div id="admin-list">
+                <!-- Items se cargan por JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <script src="admin.js"></script>
+</body>
+</html>
